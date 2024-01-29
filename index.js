@@ -40,7 +40,7 @@ client.on('message', async (message) => {
 
         // Image to Sticker (Auto && Caption)
         if ((message.type == "image" || message.type == "video" || message.type  == "gif") || (message._data.caption == `${config.prefix}sticker`)) {
-            client.sendMessage(message.from, "*[⏳]* Loading..");
+            client.sendMessage(message.from, "*[⏳]* Preparando..");
             try {
                 const media = await message.downloadMedia();
                 client.sendMessage(message.from, media, {
@@ -48,17 +48,17 @@ client.on('message', async (message) => {
                     stickerName: config.name, // Sticker Name = Edit in 'config/config.json'
                     stickerAuthor: config.author // Sticker Author = Edit in 'config/config.json'
                 }).then(() => {
-                    client.sendMessage(message.from, "*[✅]* Successfully!");
+                    client.sendMessage(message.from, "*[✅]* Sucesso!🎉");
                 });
             } catch {
-                client.sendMessage(message.from, "*[❎]* Failed!");
+                client.sendMessage(message.from, "*[❌️]* Error!");
             }
 
         // Image to Sticker (With Reply Image)
         } else if (message.body == `${config.prefix}sticker`) {
             const quotedMsg = await message.getQuotedMessage(); 
             if (message.hasQuotedMsg && quotedMsg.hasMedia) {
-                client.sendMessage(message.from, "*[⏳]* Loading..");
+                client.sendMessage(message.from, "*[⏳]* Preparando..");
                 try {
                     const media = await quotedMsg.downloadMedia();
                     client.sendMessage(message.from, media, {
@@ -66,42 +66,42 @@ client.on('message', async (message) => {
                         stickerName: config.name, // Sticker Name = Edit in 'config/config.json'
                         stickerAuthor: config.author // Sticker Author = Edit in 'config/config.json'
                     }).then(() => {
-                        client.sendMessage(message.from, "*[✅]* Successfully!");
+                        client.sendMessage(message.from, "*[✅]* Sucesso!🎉");
                     });
                 } catch {
-                    client.sendMessage(message.from, "*[❎]* Failed!");
+                    client.sendMessage(message.from, "*[❌️]* Error!");
                 }
             } else {
-                client.sendMessage(message.from, "*[❎]* Reply Image First!");
+                client.sendMessage(message.from, "*[❌️]* Responda a imagem primeiro!");
             }
 
         // Sticker to Image (Auto)
         } else if (message.type == "sticker") {
-            client.sendMessage(message.from, "*[⏳]* Loading..");
+            client.sendMessage(message.from, "*[⏳]* Carregando..");
             try {
                 const media = await message.downloadMedia();
                 client.sendMessage(message.from, media).then(() => {
-                    client.sendMessage(message.from, "*[✅]* Successfully!");
+                    client.sendMessage(message.from, "*[✅]* Sucesso!🎉");
                 });  
             } catch {
-                client.sendMessage(message.from, "*[❎]* Failed!");
+                client.sendMessage(message.from, "*[❌️]* Error!");
             }
 
         // Sticker to Image (With Reply Sticker)
         } else if (message.body == `${config.prefix}image`) {
             const quotedMsg = await message.getQuotedMessage(); 
             if (message.hasQuotedMsg && quotedMsg.hasMedia) {
-                client.sendMessage(message.from, "*[⏳]* Loading..");
+                client.sendMessage(message.from, "*[⏳]* Carregando..");
                 try {
                     const media = await quotedMsg.downloadMedia();
                     client.sendMessage(message.from, media).then(() => {
-                        client.sendMessage(message.from, "*[✅]* Successfully!");
+                        client.sendMessage(message.from, "*[✅]* Sucesso!🎉");
                     });
                 } catch {
-                    client.sendMessage(message.from, "*[❎]* Failed!");
+                    client.sendMessage(message.from, "*[❌️]* Error!");
                 }
             } else {
-                client.sendMessage(message.from, "*[❎]* Reply Sticker First!");
+                client.sendMessage(message.from, "*[❌️]* Responda a imagem primeiro!");
             }
 
         // Claim or change sticker name and sticker author
@@ -111,7 +111,7 @@ client.on('message', async (message) => {
                 let author = message.body.split('|')[1].trim();
                 const quotedMsg = await message.getQuotedMessage(); 
                 if (message.hasQuotedMsg && quotedMsg.hasMedia) {
-                    client.sendMessage(message.from, "*[⏳]* Loading..");
+                    client.sendMessage(message.from, "*[⏳]* Preparando..");
                     try {
                         const media = await quotedMsg.downloadMedia();
                         client.sendMessage(message.from, media, {
@@ -119,16 +119,16 @@ client.on('message', async (message) => {
                             stickerName: name,
                             stickerAuthor: author
                         }).then(() => {
-                            client.sendMessage(message.from, "*[✅]* Successfully!");
+                            client.sendMessage(message.from, "*[✅]* Sucesso!🎉");
                         });
                     } catch {
-                        client.sendMessage(message.from, "*[❎]* Failed!");
+                        client.sendMessage(message.from, "*[❌️]* Error");
                     }
                 } else {
-                    client.sendMessage(message.from, "*[❎]* Reply Sticker First!");
+                    client.sendMessage(message.from, "*[❌️]* Responda a imagem primeiro!!");
                 }
             } else {
-                client.sendMessage(message.from, `*[❎]* Run the command :\n*${config.prefix}change <name> | <author>*`);
+                client.sendMessage(message.from, `*[❌️]* Execute o comando :\n*${config.prefix}change <name> | <author>*`);
             }
         
         // Read chat
